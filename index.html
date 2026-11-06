@@ -851,3 +851,328 @@
     </script>
 </body>
 </html>
+<!-- ... existing code ... -->
+            <div id="quiz-result" style="margin-top: 1.5rem; display: none; padding: 1rem; border-radius: 12px;"></div>
+        </section>
+
+        <!-- NUEVO MINIJUEGO INTERACTIVO PARA LA CLASE: SIMULADOR DE CABINA & TRIVIA -->
+        <section id="juego-clase" style="background: linear-gradient(135deg, #FAF8FF 100%, #F0F6FF 0%); border-radius: 24px; padding: 3rem 2rem; border: 2px dashed #B8C5D6; box-shadow: 0 15px 35px rgba(100, 116, 139, 0.1); margin-bottom: 5rem; text-align: center; position: relative; overflow: hidden;">
+            
+            <!-- Elementos Interactivos de Aviación de Fondo (Nubes y Aviones Animados) -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1;">
+                <style>
+                    @keyframes floatCloud {
+                        0% { transform: translateX(-150px); }
+                        100% { transform: translateX(calc(100vw + 150px)); }
+                    }
+                    @keyframes flyPlane {
+                        0% { transform: translateX(-100px) translateY(0px) rotate(10deg); opacity: 0.3; }
+                        50% { opacity: 0.7; }
+                        100% { transform: translateX(calc(100vw + 100px)) translateY(-40px) rotate(-5deg); opacity: 0.3; }
+                    }
+                    .bg-cloud-1 { position: absolute; top: 10%; left: -10%; font-size: 2.5rem; color: rgba(255, 255, 255, 0.6); animation: floatCloud 25s linear infinite; }
+                    .bg-cloud-2 { position: absolute; top: 60%; left: -20%; font-size: 3.5rem; color: rgba(255, 255, 255, 0.4); animation: floatCloud 35s linear infinite; animation-delay: 5s; }
+                    .bg-plane-1 { position: absolute; top: 25%; left: -10%; font-size: 1.8rem; color: #818CF8; animation: flyPlane 18s ease-in-out infinite; animation-delay: 2s; }
+                    .bg-plane-2 { position: absolute; top: 75%; left: -15%; font-size: 1.5rem; color: #34D399; animation: flyPlane 22s ease-in-out infinite; animation-delay: 8s; }
+                </style>
+                <div class="bg-cloud-1">☁️</div>
+                <div class="bg-cloud-2">☁️</div>
+                <div class="bg-plane-1">✈️</div>
+                <div class="bg-plane-2">🛩️</div>
+            </div>
+
+            <!-- Contenido Principal del Juego -->
+            <div style="position: relative; z-index: 2;">
+                <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: #E2E8F0; color: #334155; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-gamepad" style="color: #64748B;"></i> DINÁMICA DE CLASE INTERACTIVA
+                </div>
+                
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.3rem; color: #1E293B; margin-bottom: 0.5rem;">
+                    ¡Despega tu Mente! ✈️
+                </h2>
+                <p style="color: #64748B; max-width: 650px; margin: 0 auto 2rem; font-size: 1rem;">
+                    ¡Participa con la tripulación! Responde los dilemas emocionales reales en cabina para mantener el equilibrio y bienestar a bordo.
+                </p>
+
+                <!-- Pantalla de Inicio: Ingreso de Nombre -->
+                <div id="game-start-screen" style="background: #FFFFFF; border-radius: 18px; padding: 2.5rem; border: 1px solid #E2E8F0; max-width: 500px; margin: 0 auto; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                    <i class="fa-solid fa-user-shield" style="font-size: 3rem; color: #818CF8; margin-bottom: 1rem;"></i>
+                    <h3 style="font-size: 1.4rem; color: #1E293B; margin-bottom: 1rem;">Bienvenido al Simulador</h3>
+                    <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 1.5rem;">Ingresa tu nombre para iniciar tu bitácora de vuelo:</p>
+                    
+                    <input type="text" id="player-name-input" placeholder="Escribe tu nombre aquí..." onkeydown="handleNameKeydown(event)" style="width: 100%; padding: 0.8rem 1.2rem; border-radius: 50px; border: 2px solid #CBD5E1; outline: none; font-size: 1rem; margin-bottom: 1.5rem; box-sizing: border-box; text-align: center; background: #F8FAFC; color: #1E293B;">
+                    
+                    <button type="button" onclick="startGame()" style="width: 100%; background: linear-gradient(135deg, #A5B4FC, #C084FC); color: #000000; border: none; padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(165, 180, 252, 0.4);">
+                        Comenzar Desafío ✈️
+                    </button>
+                </div>
+
+                <!-- Panel de Juego (Oculto al inicio) -->
+                <div id="game-main-content" style="display: none;">
+                    <!-- Dashboard de Control con Fondo Azul Cielo Pastel y Nubes Decorativas -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background: linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 100%); color: #0369A1; padding: 1.5rem; border-radius: 18px; margin-bottom: 2rem; border: 1px solid #7DD3FC; box-shadow: inset 0 2px 6px rgba(255,255,255,0.6); position: relative; overflow: hidden;">
+                        
+                        <!-- Detalle sutil de nubes en el fondo del tablero -->
+                        <div style="position: absolute; top: -10px; right: 10px; font-size: 3rem; opacity: 0.25; pointer-events: none;">☁️</div>
+                        <div style="position: absolute; bottom: -10px; left: 20px; font-size: 2.5rem; opacity: 0.25; pointer-events: none;">☁️</div>
+
+                        <!-- Panel Tripulante -->
+                        <div style="background: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 12px; border: 1px solid rgba(125, 211, 252, 0.5); position: relative; z-index: 2;">
+                            <span style="display: block; font-size: 0.75rem; color: #0284C7; font-weight: 700; text-transform: uppercase;">TRIPULANTE ☁️</span>
+                            <span id="game-player-display" style="font-size: 1.2rem; font-weight: 700; color: #0F172A;">-</span>
+                        </div>
+                        <!-- Panel Estado de Cabina -->
+                        <div style="background: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 12px; border: 1px solid rgba(125, 211, 252, 0.5); position: relative; z-index: 2;">
+                            <span style="display: block; font-size: 0.75rem; color: #0284C7; font-weight: 700; text-transform: uppercase;">ESTADO DE CABINA ✈️</span>
+                            <span id="game-estado" style="font-size: 1.1rem; font-weight: 700; color: #0D9488;">Cielo Despejado ✨</span>
+                        </div>
+                        <!-- Panel Puntaje -->
+                        <div style="background: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 12px; border: 1px solid rgba(125, 211, 252, 0.5); position: relative; z-index: 2;">
+                            <span style="display: block; font-size: 0.75rem; color: #0284C7; font-weight: 700; text-transform: uppercase;">PUNTAJE TRIVIA 🌟</span>
+                            <span id="game-score" style="font-size: 1.6rem; font-weight: 700; color: #D97706;">0 PTS</span>
+                        </div>
+                    </div>
+
+                    <!-- Contenedor del Juego -->
+                    <div id="game-box" style="background: #FFFFFF; border-radius: 18px; padding: 2rem; border: 1px solid #E2E8F0; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: left;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span id="game-step" style="font-weight: 700; font-size: 0.85rem; color: #6366F1; text-transform: uppercase; letter-spacing: 1px;">Desafío 1 de 4</span>
+                            <span id="game-pillar" style="background: #EDE9FE; color: #7C3AED; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Autoconocimiento</span>
+                        </div>
+
+                        <h3 id="game-question" style="font-size: 1.2rem; color: #1E293B; margin-bottom: 1.5rem;">
+                            Cargando desafío de vuelo...
+                        </h3>
+
+                        <div id="game-options" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <!-- Opciones inyectadas dinámicamente con JS -->
+                        </div>
+
+                        <div id="game-feedback" style="margin-top: 1.5rem; display: none; padding: 1rem; border-radius: 12px; font-size: 0.95rem;"></div>
+
+                        <div style="margin-top: 1.5rem; text-align: right;">
+                            <button id="btn-next-question" type="button" onclick="nextQuestion()" style="display: none; background: linear-gradient(135deg, #A5B4FC, #C084FC); color: #000000; border: none; padding: 0.75rem 1.8rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; cursor: pointer; box-shadow: 0 4px 15px rgba(165, 180, 252, 0.4);">
+                                Siguiente Desafío <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pantalla Final de Victoria con Emoji Dinámico de Emoción y Aviación -->
+                    <div id="game-finish" style="display: none; background: #FFFFFF; border-radius: 18px; padding: 2.5rem; text-align: center; border: 2px solid #34D399;">
+                        <div id="final-icon-container" style="width: 80px; height: 80px; background: #ECFDF5; color: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                            <span id="final-emoji">🌟</span>
+                        </div>
+                        <h3 id="final-title" style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #1E293B; margin-bottom: 0.5rem;">
+                            ¡Evaluación Completada! 🎉
+                        </h3>
+                        <p id="final-badge-text" style="font-size: 1.1rem; color: #64748B; max-width: 550px; margin: 0 auto 1.5rem;">
+                            <!-- Texto dinámico -->
+                        </p>
+                        <div style="display: inline-block; background: #FEF3C7; color: #92400E; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 700; font-size: 1rem; margin-bottom: 1.5rem; border: 1px solid #FDE68A;">
+                            Insignia Otorgada: <span id="badge-name">-</span>
+                        </div>
+                        <br>
+                        <button type="button" onclick="restartGame()" style="background: #F1F5F9; color: #334155; border: 1px solid #CBD5E1; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer;">
+                            <i class="fa-solid fa-rotate-right"></i> Reiniciar Trivia para la Clase
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+<!-- ... existing code ... -->
+    <!-- Interactive Script -->
+    <script>
+        // ==========================================
+        // LÓGICA DEL NUEVO JUEGO INTERACTIVO DE CLASE
+        // ==========================================
+        const gameData = [
+            {
+                pillar: "Autoconocimiento",
+                question: "1. Llegan al aeropuerto tras una noche con pocas horas de sueño y problemas personales. ¿Qué exige el 'Radar Emocional' antes de abordar?",
+                options: [
+                    { text: "A) Ignorar completamente cómo me siento y no decirle nada a la tripulación.", correct: false, exp: "Incorrecto. Ignorar la fatiga y la carga emocional incrementa el riesgo de cometer errores fatales en procedimientos." },
+                    { text: "B) Reconocer mi nivel de fatiga/estrés y comunicar a mi equipo mi estado para apoyarnos mutuamente.", correct: true, exp: "¡Correcto! El Autoconocimiento es saber cómo nos sentimos y cómo afecta el rendimiento del equipo a bordo." },
+                    { text: "C) Molestarme con los pasajeros desde el inicio porque no me siento al 100%.", correct: false, exp: "Incorrecto. Descargar la frustración personal rompe la armonía y la seguridad en cabina." }
+                ]
+            },
+            {
+                pillar: "Autorregulación",
+                question: "2. Durante el vuelo hay turbulencia severa e inesperada. Un pasajero empieza a gritar y entra en pánico. ¿Cómo reacciona una azafata con inteligencia emocional?",
+                options: [
+                    { text: "A) Entrar en pánico igual que el pasajero y buscar refugio rápido.", correct: false, exp: "Incorrecto. La tripulación de cabina debe ser el ancla de serenidad de la aeronave." },
+                    { text: "B) Regañar al pasajero fuertemente para que se calle inmediatamente.", correct: false, exp: "Incorrecto. El grito aumenta la tensión y el pánico del resto de pasajeros." },
+                    { text: "C) Mantener el tono de voz calmado, seguir los protocolos de seguridad y transmitir serenidad absoluta.", correct: true, exp: "¡Excelente! La autorregulación permite desescalar el pánico y mantener el control seguro de la cabina." }
+                ]
+            },
+            {
+                pillar: "Ikigai & Vocación",
+                question: "3. Un TCP lleva 3 vuelos continuos y siente agotamiento. ¿Cómo ayuda conectar con su Ikigai en ese momento?",
+                options: [
+                    { text: "A) Le recuerda que ama volar, que protege vidas humanas y transforma el cansancio en servicio con propósito.", correct: true, exp: "¡Muy bien! El Ikigai reconecta el gusto de volar con el sentido de utilidad y pasión profesional." },
+                    { text: "B) Sirve para quejarse con los pasajeros sobre los horarios de la aerolínea.", correct: false, exp: "Incorrecto. Eso destruye la experiencia del pasajero y desprofesionaliza el servicio." },
+                    { text: "C) Hace que realice el chequeo de seguridad de forma rápida e incompleta.", correct: false, exp: "Incorrecto. La seguridad nunca se compromete por fatiga." }
+                ]
+            },
+            {
+                pillar: "El Shimei",
+                question: "4. ¿Cuál de estas frases representa el auténtico SHIMEI (Misión Consagrada) en la aviación?",
+                options: [
+                    { text: "A) 'Vengo a bordo únicamente a cumplir mi horario y cobrar mi salario.'", correct: false, exp: "Incorrecto. Eso es solo el aspecto laboral/profesión, sin el compromiso del Shimei." },
+                    { text: "B) 'Mi vida y mi labor están consagradas a proteger, cuidar y dar tranquilidad a cada pasajero que confía en nosotros.'", correct: true, exp: "¡Respuesta Máxima! El Shimei es poner la propia vida y vocación al servicio trascendente y cuidado de otros." },
+                    { text: "C) 'Mi única función es servir bebidas a tiempo en el pasillo.'", correct: false, exp: "Incorrecto. La labor de un TCP es principalmente de seguridad y contención humana." }
+                ]
+            }
+        ];
+
+        let currentQuestionIdx = 0;
+        let gameScore = 0;
+        let correctAnswersCount = 0;
+        let playerName = "";
+
+        function handleNameKeydown(event) {
+            if (event.key === 'Enter') {
+                startGame();
+            }
+        }
+
+        function startGame() {
+            const input = document.getElementById('player-name-input');
+            playerName = input.value.trim();
+
+            if (!playerName) {
+                alert("Por favor, ingresa tu nombre para comenzar la trivia.");
+                input.focus();
+                return;
+            }
+
+            document.getElementById('game-player-display').innerText = playerName;
+            document.getElementById('game-start-screen').style.display = 'none';
+            document.getElementById('game-main-content').style.display = 'block';
+
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = gameData[currentQuestionIdx];
+            document.getElementById('game-step').innerText = `Desafío ${currentQuestionIdx + 1} de ${gameData.length}`;
+            document.getElementById('game-pillar').innerText = q.pillar;
+            document.getElementById('game-question').innerText = q.question;
+
+            const optsBox = document.getElementById('game-options');
+            optsBox.innerHTML = '';
+
+            const feedback = document.getElementById('game-feedback');
+            feedback.style.display = 'none';
+            document.getElementById('btn-next-question').style.display = 'none';
+
+            q.options.forEach((opt) => {
+                const btn = document.createElement('div');
+                btn.className = 'quiz-option';
+                btn.style.cssText = 'background: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem 1.2rem; border-radius: 12px; cursor: pointer; transition: all 0.2s; font-size: 0.95rem; color: #1E293B; font-weight: 500;';
+                btn.innerHTML = `<span>${opt.text}</span>`;
+                btn.onclick = () => handleGameAnswer(opt, btn);
+                optsBox.appendChild(btn);
+            });
+        }
+
+        function handleGameAnswer(option, element) {
+            const allOpts = document.querySelectorAll('#game-options .quiz-option');
+            allOpts.forEach(o => o.style.pointerEvents = 'none');
+
+            const feedback = document.getElementById('game-feedback');
+            feedback.style.display = 'block';
+
+            if (option.correct) {
+                correctAnswersCount++;
+                element.style.background = '#ECFDF5';
+                element.style.borderColor = '#34D399';
+                element.style.color = '#065F46';
+                feedback.style.background = '#ECFDF5';
+                feedback.style.color = '#065F46';
+                feedback.innerHTML = `<strong>¡Excelente Acierto! ✨</strong> ${option.exp}`;
+                
+                gameScore += 250;
+                document.getElementById('game-score').innerText = `${gameScore} PTS`;
+                document.getElementById('game-estado').innerText = "Vuelo Estable / Calma 🌿";
+                document.getElementById('game-estado').style.color = "#0D9488";
+            } else {
+                element.style.background = '#FEF2F2';
+                element.style.borderColor = '#F87171';
+                element.style.color = '#991B1B';
+                feedback.style.background = '#FEF2F2';
+                feedback.style.color = '#991B1B';
+                feedback.innerHTML = `<strong>¡Atención en Cabina! ⚠️</strong> ${option.exp}`;
+                
+                document.getElementById('game-estado').innerText = "Tensión Emocional 🌧️";
+                document.getElementById('game-estado').style.color = "#E11D48";
+            }
+
+            document.getElementById('btn-next-question').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIdx++;
+            if (currentQuestionIdx < gameData.length) {
+                loadQuestion();
+            } else {
+                showGameFinish();
+            }
+        }
+
+        function showGameFinish() {
+            document.getElementById('game-box').style.display = 'none';
+            const finishBox = document.getElementById('game-finish');
+            finishBox.style.display = 'block';
+
+            const badgeName = document.getElementById('badge-name');
+            const badgeText = document.getElementById('final-badge-text');
+            const iconContainer = document.getElementById('final-icon-container');
+            const emojiSpan = document.getElementById('final-emoji');
+
+            if (correctAnswersCount === 4) {
+                finishBox.style.borderColor = "#34D399";
+                iconContainer.style.background = "#ECFDF5";
+                iconContainer.style.color = "#059669";
+                emojiSpan.innerText = "✈️";
+                badgeName.innerText = "✈️ Tripulante en Formación de Inteligencia Emocional";
+                badgeText.innerHTML = `¡Felicitaciones <strong>${playerName}</strong>! Has respondido todas las preguntas correctamente. Demostraste un dominio total sobre el autoconocimiento, la autorregulación y el servicio a bordo.`;
+            } else if (correctAnswersCount >= 2) {
+                finishBox.style.borderColor = "#FBBF24";
+                iconContainer.style.background = "#FEF3C7";
+                iconContainer.style.color = "#D97706";
+                emojiSpan.innerText = "🌤️";
+                badgeName.innerText = "🌤️ Tripulante en Ascenso: ¡Puedes Mejorarlo!";
+                badgeText.innerHTML = `¡Buen trabajo, <strong>${playerName}</strong>! Has demostrado buenos fundamentos emocionales en cabina, pero aún hay áreas clave por afinar. ¡Revisa los conceptos y vuelve a intentarlo!`;
+            } else {
+                finishBox.style.borderColor = "#60A5FA";
+                iconContainer.style.background = "#EFF6FF";
+                iconContainer.style.color = "#2563EB";
+                emojiSpan.innerText = "🧭";
+                badgeName.innerText = "🧭 Navegante Emocional: ¡Nunca es tarde para lograrlo!";
+                badgeText.innerHTML = `¡Gracias por participar, <strong>${playerName}</strong>! El camino del aprendizaje en la aviación es constante. Repasa los conceptos del Ikigai y el Shimei y vuelve a despegar.`;
+            }
+        }
+
+        function restartGame() {
+            currentQuestionIdx = 0;
+            gameScore = 0;
+            correctAnswersCount = 0;
+
+            document.getElementById('game-score').innerText = '0 PTS';
+            document.getElementById('game-estado').innerText = 'Cielo Despejado ✨';
+            document.getElementById('game-estado').style.color = '#0D9488';
+            
+            document.getElementById('game-finish').style.display = 'none';
+            document.getElementById('game-main-content').style.display = 'none';
+            document.getElementById('player-name-input').value = '';
+            document.getElementById('game-start-screen').style.display = 'block';
+            document.getElementById('game-box').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
