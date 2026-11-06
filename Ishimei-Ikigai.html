@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuelo Emocional: Ikigai, Shimei y Aviación</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        skyPastel: '#E0F2FE',
+                        skyBlue: '#BAE6FD',
+                        cloudWhite: '#F8FAFC',
+                        blushPink: '#FCE7F3',
+                        softLavender: '#F3E8FF',
+                        warmGold: '#FEF08A',
+                        navyDeep: '#1E293B',
+                        roseAccent: '#F43F5E',
+                        blueAccent: '#0284C7',
+                        purpleAccent: '#9333EA',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    animation: {
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'float-medium': 'float 4s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s infinite',
+                        'drift-cloud': 'drift 25s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(1deg)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.05)' },
+                        },
+                        drift: {
+                            '0%': { transform: 'translateX(-10%)' },
+                            '100%': { transform: 'translateX(110%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Glassmorphism elements */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Interactive Ikigai Circles */
+        .ikigai-circle {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.75;
+        }
+        .ikigai-circle:hover {
+            opacity: 0.95;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-skyPastel via-cloudWhite to-softLavender/30 text-slate-800 font-sans min-h-screen relative overflow-x-hidden">
+
+    <!-- Ambient Animated Background Clouds -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-10 -left-20 text-white/40 animate-drift-cloud" style="animation-duration: 35s;">
+            <i class="fa-solid font-cloud text-9xl text-white/60 drop-shadow-md">☁</i>
+        </div>
+        <div class="absolute top-1/3 -left-40 text-white/30 animate-drift-cloud" style="animation-duration: 45s; animation-delay: 5s;">
+            <i class="fa-solid font-cloud text-[180px] text-white/40 drop-shadow-sm">☁</i>
+        </div>
+        <div class="absolute top-2/3 -left-30 text-white/40 animate-drift-cloud" style="animation-duration: 40s; animation-delay: 12s;">
+            <i class="fa-solid font-cloud text-[140px] text-white/50">☁</i>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 glass-card px-4 lg:px-8 py-3 transition-all duration-300 border-b border-white/40 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-rose-300 flex items-center justify-center text-white shadow-md transform group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-plane-up text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-lg text-slate-800 tracking-tight block leading-none">Vuelo Emocional</span>
+                    <span class="text-xs text-sky-600 font-medium tracking-wider uppercase">Ikigai & Shimei TCP</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-semibold text-slate-600">
+                <a href="#inteligencia-emocional" class="px-3 py-2 rounded-full hover:bg-white/80 hover:text-sky-600 transition">Inteligencia Emocional</a>
+                <a href="#ikigai" class="px-3 py-2 rounded-full hover:bg-white/80 hover:text-purple-600 transition">El Ikigai</a>
+                <a href="#shimei" class="px-3 py-2 rounded-full hover:bg-white/80 hover:text-rose-600 transition">El Shimei</a>
+                <a href="#aviacion-tcp" class="px-3 py-2 rounded-full hover:bg-white/80 hover:text-amber-600 transition">TCP & Aviación</a>
+                <a href="#test-emocional" class="px-4 py-2 rounded-full bg-gradient-to-r from-sky-400 to-rose-300 text-white font-bold shadow-sm hover:shadow-md hover:opacity-95 transition">Chequeo de Vuelo</a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-700 hover:text-sky-600 focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-3 pt-3 border-t border-slate-200/50 flex flex-col space-y-2 pb-2">
+            <a href="#inteligencia-emocional" class="px-4 py-2 rounded-lg hover:bg-sky-50 text-slate-700 text-sm font-medium">Inteligencia Emocional</a>
+            <a href="#ikigai" class="px-4 py-2 rounded-lg hover:bg-purple-50 text-slate-700 text-sm font-medium">El Ikigai</a>
+            <a href="#shimei" class="px-4 py-2 rounded-lg hover:bg-rose-50 text-slate-700 text-sm font-medium">El Shimei</a>
+            <a href="#aviacion-tcp" class="px-4 py-2 rounded-lg hover:bg-amber-50 text-slate-700 text-sm font-medium">TCP & Aviación</a>
+            <a href="#test-emocional" class="px-4 py-2 rounded-lg bg-sky-400 text-white text-center font-semibold text-sm">Chequeo de Vuelo</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center px-4 py-16 overflow-hidden">
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            
+            <!-- Floating Flight Badge -->
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card text-sky-700 text-xs sm:text-sm font-semibold mb-6 animate-float-slow shadow-sm">
+                <i class="fa-solid fa-compass text-amber-500 animate-spin" style="animation-duration: 12s;"></i>
+                <span>Navegación Emocional a 30.000 pies</span>
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-extrabold text-slate-800 tracking-tight mb-6 leading-tight">
+                Despega hacia tu <br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-sky-500 via-purple-500 to-rose-400 bg-clip-text text-transparent">Propósito de Vida</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 font-normal leading-relaxed mb-8">
+                Descubre cómo la <strong class="text-sky-600 font-semibold">Inteligencia Emocional</strong>, el <strong class="text-purple-600 font-semibold">Ikigai</strong> y el <strong class="text-rose-500 font-semibold">Shimei</strong> forman la ruta de vuelo perfecta para transformar la vida de los Tripulantes de Cabina de Pasajeros (TCP) y llevar el servicio aéreo a su máximo nivel humano.
+            </p>
+
+            <!-- Team Members Pastels Badges / Bubbles -->
+            <div class="max-w-4xl mx-auto mb-14">
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-users text-sky-500"></i>
+                    <span>Tripulación de Presentadores</span>
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    
+                    <!-- Member 1 -->
+                    <div class="px-4 py-2.5 rounded-full glass-card bg-sky-100/70 border border-sky-200/80 text-sky-900 text-xs sm:text-sm font-semibold shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center space-x-2.5">
+                        <div class="w-6 h-6 rounded-full bg-sky-400 text-white flex items-center justify-center text-[10px] shadow-sm">
+                            <i class="fa-solid fa-plane-up"></i>
+                        </div>
+                        <span>Michael Ávila</span>
+                    </div>
+
+                    <!-- Member 2 -->
+                    <div class="px-4 py-2.5 rounded-full glass-card bg-rose-100/70 border border-rose-200/80 text-rose-900 text-xs sm:text-sm font-semibold shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center space-x-2.5">
+                        <div class="w-6 h-6 rounded-full bg-rose-400 text-white flex items-center justify-center text-[10px] shadow-sm">
+                            <i class="fa-solid fa-plane-up"></i>
+                        </div>
+                        <span>Juliana Bayona</span>
+                    </div>
+
+                    <!-- Member 3 -->
+                    <div class="px-4 py-2.5 rounded-full glass-card bg-purple-100/70 border border-purple-200/80 text-purple-900 text-xs sm:text-sm font-semibold shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center space-x-2.5">
+                        <div class="w-6 h-6 rounded-full bg-purple-400 text-white flex items-center justify-center text-[10px] shadow-sm">
+                            <i class="fa-solid fa-plane-up"></i>
+                        </div>
+                        <span>Karla Carrillo</span>
+                    </div>
+
+                    <!-- Member 4 -->
+                    <div class="px-4 py-2.5 rounded-full glass-card bg-amber-100/70 border border-amber-200/80 text-amber-900 text-xs sm:text-sm font-semibold shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center space-x-2.5">
+                        <div class="w-6 h-6 rounded-full bg-amber-400 text-white flex items-center justify-center text-[10px] shadow-sm">
+                            <i class="fa-solid fa-plane-up"></i>
+                        </div>
+                        <span>Gilvert Crúz</span>
+                    </div>
+
+                    <!-- Member 5 -->
+                    <div class="px-4 py-2.5 rounded-full glass-card bg-emerald-100/70 border border-emerald-200/80 text-emerald-900 text-xs sm:text-sm font-semibold shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center space-x-2.5">
+                        <div class="w-6 h-6 rounded-full bg-emerald-400 text-white flex items-center justify-center text-[10px] shadow-sm">
+                            <i class="fa-solid fa-plane-up"></i>
+                        </div>
+                        <span>Kerly Quintero</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Interactive Boarding Pass Widget (Hero Highlight) -->
+            <div class="max-w-3xl mx-auto glass-card rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden border border-white/80">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-rose-200/40 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -left-10 -top-10 w-40 h-40 bg-sky-200/50 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-200/60 pb-4 mb-4 gap-4 text-left">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 bg-sky-100 text-sky-600 rounded-2xl">
+                            <i class="fa-solid fa-ticket text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-sky-600 uppercase tracking-wider">BOARDING PASS EMOCIONAL</p>
+                            <h3 class="text-lg font-bold text-slate-800">Pasajero: Tripulante de Vida</h3>
+                        </div>
+                    </div>
+                    <div class="text-right flex sm:flex-col justify-between w-full sm:w-auto items-center sm:items-end">
+                        <span class="text-xs text-slate-400">06.NOV.2026.</span>
+                        <span class="font-mono font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-lg">BOG-MDE</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Mood Selector -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <button onclick="setFlightMood('Calma', 'Vuelo sin turbulencias', 'sky')" class="p-3 rounded-2xl border border-sky-100 bg-sky-50/50 hover:bg-sky-100 transition group flex flex-col items-center">
+                        <span class="text-2xl mb-1 group-hover:scale-125 transition">😌</span>
+                        <span class="text-xs font-bold text-sky-800">Calma Total</span>
+                        <span class="text-[10px] text-sky-600">Altitud óptima</span>
+                    </button>
+                    <button onclick="setFlightMood('Empatía', 'Conexión con pasajeros', 'purple')" class="p-3 rounded-2xl border border-purple-100 bg-purple-50/50 hover:bg-purple-100 transition group flex flex-col items-center">
+                        <span class="text-2xl mb-1 group-hover:scale-125 transition">💖</span>
+                        <span class="text-xs font-bold text-purple-800">Empatía</span>
+                        <span class="text-[10px] text-purple-600">Servicio de corazón</span>
+                    </button>
+                    <button onclick="setFlightMood('Resiliencia', 'Gestión de turbulencias', 'rose')" class="p-3 rounded-2xl border border-rose-100 bg-rose-50/50 hover:bg-rose-100 transition group flex flex-col items-center">
+                        <span class="text-2xl mb-1 group-hover:scale-125 transition">🛡️</span>
+                        <span class="text-xs font-bold text-rose-800">Resiliencia</span>
+                        <span class="text-[10px] text-rose-600">Dominio en tormentas</span>
+                    </button>
+                    <button onclick="setFlightMood('Propósito', 'Shimei en la cabina', 'amber')" class="p-3 rounded-2xl border border-amber-100 bg-amber-50/50 hover:bg-amber-100 transition group flex flex-col items-center">
+                        <span class="text-2xl mb-1 group-hover:scale-125 transition">✨</span>
+                        <span class="text-xs font-bold text-amber-800">Shimei / Misión</span>
+                        <span class="text-[10px] text-amber-600">Servir con vocación</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Status Output -->
+                <div id="moodOutput" class="mt-4 p-3 rounded-xl bg-white/80 border border-slate-100 text-xs sm:text-sm text-slate-600 flex items-center justify-between">
+                    <span class="flex items-center"><i class="fa-solid fa-circle-info text-sky-500 mr-2"></i> Selecciona un estado para verificar tu indicador de vuelo.</span>
+                    <span class="font-mono text-xs font-semibold text-slate-400">STATUS: OK</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Animated SVG Airplane Graphic Floating Across Hero -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 pointer-events-none opacity-40 animate-bounce">
+            <i class="fa-solid fa-chevron-down text-slate-400 text-xl"></i>
+        </div>
+    </section>
+
+    <!-- SECTION 1: INTELIGENCIA EMOCIONAL EN LA AVIACIÓN -->
+    <section id="inteligencia-emocional" class="py-20 px-4 max-w-7xl mx-auto relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3 py-1 rounded-full">Pilotaje Interno</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-800 mt-3 mb-4">¿Qué es la Inteligencia Emocional en la Cabina?</h2>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Así como un piloto monitorea el instrumental del avión antes y durante el vuelo, la Inteligencia Emocional es la capacidad de reconocer, comprender y gestionar nuestras emociones para mantener la estabilidad, seguridad y armonía en cualquier entorno.
+            </p>
+        </div>
+
+        <!-- 4 Pillars Grid (Flight Metaphors) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Pillar 1 -->
+            <div class="glass-card p-6 rounded-3xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white group">
+                <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-radar"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-800 mb-2">1. Autoconocimiento</h3>
+                <p class="text-xs text-sky-600 font-semibold mb-3">"Radar Emocional"</p>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Reconocer tu estado de ánimo, tus límites de fatiga y desencadenantes de estrés antes de abordar el avión. Saber qué sientes y cómo afecta a tu tripulación.
+                </p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="glass-card p-6 rounded-3xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white group">
+                <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-800 mb-2">2. Autorregulación</h3>
+                <p class="text-xs text-rose-500 font-semibold mb-3">"Control Manual de Turbulencia"</p>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Mantener la calma frente a pasajeros difíciles o imprevistos de vuelo. Reemplazar la reactividad impulsiva por respuestas serenas, profesionales y compasivas.
+                </p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="glass-card p-6 rounded-3xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white group">
+                <div class="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-800 mb-2">3. Empatía</h3>
+                <p class="text-xs text-purple-600 font-semibold mb-3">"Sintonización con el Pasajero"</p>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Comprender los miedos, ansiedades o frustraciones de los pasajeros (como el miedo a volar). Validar sus emociones con una mirada o una palabra tranquilizadora.
+                </p>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="glass-card p-6 rounded-3xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white group">
+                <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-800 mb-2">4. Habilidades Sociales</h3>
+                <p class="text-xs text-amber-600 font-semibold mb-3">"Sinergia de Tripulación (CRM)"</p>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Comunicación clara, asertiva y cálida tanto con los pilotos en cabina como con tus compañeros de pasillo para trabajar como un equipo perfectamente coordinado.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: EL IKIGAI (LA BRÚJULA DEL PROPÓSITO) -->
+    <section id="ikigai" class="py-20 px-4 bg-gradient-to-b from-white/60 to-purple-50/40 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest text-purple-600 uppercase bg-purple-100 px-3 py-1 rounded-full">Filosofía Japonesa de Vida</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-slate-800 mt-3 mb-4">El Ikigai: Tu Razón de Ser</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    El término japonés <strong>Ikigai</strong> (生き甲斐) se traduce como "la razón para levantarse cada mañana". En la aviación, encontrar tu Ikigai transforma un simple trabajo en una vocación que llena de sentido cada ruta.
+                </p>
+            </div>
+
+            <!-- Interactive Ikigai Visual Explorer -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Diagram Visual (Interactive Venn) -->
+                <div class="lg:col-span-7 flex justify-center relative">
+                    
+                    <div class="relative w-full max-w-[520px] aspect-square flex items-center justify-center">
+
+                        <!-- Circle 1: LO QUE AMAS (Top) -->
+                        <div onclick="showIkigaiDetail('amas')" class="ikigai-circle absolute top-0 w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-rose-200/70 border border-rose-300 flex flex-col items-center justify-start pt-8 cursor-pointer hover:shadow-lg">
+                            <i class="fa-solid fa-heart text-rose-500 text-xl sm:text-2xl mb-1"></i>
+                            <span class="font-bold text-xs sm:text-sm text-rose-900 text-center px-4">Lo que amas</span>
+                            <span class="text-[10px] text-rose-700 font-medium px-4 text-center leading-tight mt-0.5">Volar, servir, conocer culturas</span>
+                        </div>
+
+                        <!-- Circle 2: EN LO QUE ERES BUENO (Left) -->
+                        <div onclick="showIkigaiDetail('bueno')" class="ikigai-circle absolute left-0 w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-sky-200/70 border border-sky-300 flex flex-col items-start justify-center pl-6 pr-16 cursor-pointer hover:shadow-lg">
+                            <i class="fa-solid fa-star text-sky-600 text-xl sm:text-2xl mb-1"></i>
+                            <span class="font-bold text-xs sm:text-sm text-sky-900 text-left">En lo que eres bueno</span>
+                            <span class="text-[10px] text-sky-700 font-medium text-left leading-tight mt-0.5">Calma en emergencia, idiomas, empatía</span>
+                        </div>
+
+                        <!-- Circle 3: LO QUE EL MUNDO NECESITA (Right) -->
+                        <div onclick="showIkigaiDetail('mundo')" class="ikigai-circle absolute right-0 w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-purple-200/70 border border-purple-300 flex flex-col items-end justify-center pr-6 pl-16 text-right cursor-pointer hover:shadow-lg">
+                            <i class="fa-solid fa-earth-americas text-purple-600 text-xl sm:text-2xl mb-1"></i>
+                            <span class="font-bold text-xs sm:text-sm text-purple-900 text-right">Lo que el mundo necesita</span>
+                            <span class="text-[10px] text-purple-700 font-medium text-right leading-tight mt-0.5">Seguridad, calidez, puentes humanos</span>
+                        </div>
+
+                        <!-- Circle 4: POR LO QUE TE PUEDEN PAGAR (Bottom) -->
+                        <div onclick="showIkigaiDetail('pagan')" class="ikigai-circle absolute bottom-0 w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-amber-200/70 border border-amber-300 flex flex-col items-center justify-end pb-8 cursor-pointer hover:shadow-lg">
+                            <i class="fa-solid fa-coins text-amber-600 text-xl sm:text-2xl mb-1"></i>
+                            <span class="font-bold text-xs sm:text-sm text-amber-900 text-center px-4">Por lo que te pagan</span>
+                            <span class="text-[10px] text-amber-700 font-medium px-4 text-center leading-tight mt-0.5">Tu labor profesional como TCP</span>
+                        </div>
+
+                        <!-- Center IKIGAI Core -->
+                        <div onclick="showIkigaiDetail('ikigai')" class="absolute z-20 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-white shadow-2xl border-4 border-amber-300 flex flex-col items-center justify-center cursor-pointer hover:scale-110 transition-transform group">
+                            <i class="fa-solid fa-plane text-sky-500 text-xl sm:text-2xl group-hover:rotate-45 transition-transform duration-500"></i>
+                            <span class="font-extrabold text-xs sm:text-sm text-slate-800 tracking-wider mt-1">IKIGAI</span>
+                            <span class="text-[9px] text-amber-600 font-bold">TU CENTRO</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Interactive Description Box -->
+                <div class="lg:col-span-5">
+                    <div id="ikigaiDetailBox" class="glass-card rounded-3xl p-6 sm:p-8 shadow-md border border-white">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-circle-dot"></i>
+                            </div>
+                            <div>
+                                <h3 id="ikigaiTitle" class="font-serif font-bold text-xl text-slate-800">Haz clic en los círculos</h3>
+                                <p class="text-xs text-purple-600 font-semibold">Explorador del Ikigai TCP</p>
+                            </div>
+                        </div>
+
+                        <p id="ikigaiText" class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Haz clic en cualquier área del diagrama de Venn a la izquierda para descubrir cómo interactúa ese elemento en la vida de una tripulante de cabina.
+                        </p>
+
+                        <!-- Sub-intersections badges -->
+                        <div class="grid grid-cols-2 gap-2 pt-4 border-t border-slate-200/60">
+                            <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-100 text-center">
+                                <span class="block text-[10px] font-bold text-rose-500 uppercase">Pasión</span>
+                                <span class="text-xs font-semibold text-slate-700">Amar + Ser Bueno</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-purple-50 border border-purple-100 text-center">
+                                <span class="block text-[10px] font-bold text-purple-500 uppercase">Misión</span>
+                                <span class="text-xs font-semibold text-slate-700">Amar + Necesidad</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-100 text-center">
+                                <span class="block text-[10px] font-bold text-sky-500 uppercase">Vocación</span>
+                                <span class="text-xs font-semibold text-slate-700">Necesidad + Pago</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-100 text-center">
+                                <span class="block text-[10px] font-bold text-amber-600 uppercase">Profesión</span>
+                                <span class="text-xs font-semibold text-slate-700">Ser Bueno + Pago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: EL SHIMEI (PROPÓSITO Y MISIÓN DE SERVICIO) -->
+    <section id="shimei" class="py-20 px-4 max-w-7xl mx-auto relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Info Column -->
+            <div class="lg:col-span-6 space-y-6">
+                <span class="text-xs font-bold tracking-widest text-rose-500 uppercase bg-rose-100 px-3 py-1 rounded-full">El Arte del Servicio con Alma</span>
+                
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-slate-800 leading-tight">
+                    El Shimei (使命): <br>
+                    <span class="text-rose-500">Tu Misión Consagrada</span>
+                </h2>
+
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    En japonés, <strong>Shimei</strong> se compone de dos caracteres: <em>Shi</em> (usar/emplear) y <em>Mei</em> (vida). Significa literalmente <strong>"usar la vida para un propósito superior"</strong>.
+                </p>
+
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Mientras que el Ikigai es la búsqueda personal de felicidad, el <strong>Shimei es tu compromiso trascendente con el bienestar de los demás</strong>. Para un tripulante de cabina, el Shimei es entender que su trabajo no es repartir comida o revisar cinturones; es <strong>proteger vidas, brindar paz y hacer sentir seguro a cada ser humano a 30,000 pies de altura</strong>.
+                </p>
+
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-start space-x-3 p-3 rounded-2xl glass-card border border-rose-100">
+                        <div class="p-2 bg-rose-100 text-rose-500 rounded-xl mt-0.5">
+                            <i class="fa-solid fa-hands-holding-circle"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Servicio Humano Trascendente</h4>
+                            <p class="text-xs text-slate-500">Transformar la rutina del vuelo en actos conscientes de cuidado y empatía.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3 p-3 rounded-2xl glass-card border border-sky-100">
+                        <div class="p-2 bg-sky-100 text-sky-600 rounded-xl mt-0.5">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Guardianes del Bienestar</h4>
+                            <p class="text-xs text-slate-500">Asumir con honor la responsabilidad primaria: la seguridad física y emocional a bordo.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Visual Component (Aviation Card & Quote) -->
+            <div class="lg:col-span-6 relative">
+                
+                <div class="relative glass-card rounded-3xl p-8 border border-white shadow-xl overflow-hidden">
+                    
+                    <div class="absolute -right-8 -top-8 text-rose-100/60 font-serif text-9xl select-none">"</div>
+                    
+                    <div class="relative z-10 space-y-6">
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-rose-300 to-amber-200 flex items-center justify-center text-white text-2xl shadow-md">
+                                <i class="fa-solid fa-user-astronaut"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-800">Misión a 30,000 Pies</h3>
+                                <p class="text-xs text-rose-500 font-semibold">El alma del TCP</p>
+                            </div>
+                        </div>
+
+                        <blockquote class="italic font-serif text-slate-700 text-base sm:text-lg leading-relaxed">
+                            "Cuando entiendes tu Shimei, no estás cumpliendo un turno de vuelo; estás recibiendo en tus manos la confianza, los miedos y los sueños de cientos de pasajeros que te entregan su vida durante el viaje."
+                        </blockquote>
+
+                        <div class="bg-rose-50/80 p-4 rounded-2xl border border-rose-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-heart-circle-check text-rose-500 text-xl"></i>
+                                <span class="text-xs font-bold text-rose-900">Enfoque Shimei TCP</span>
+                            </div>
+                            <span class="text-[11px] bg-rose-200 text-rose-800 font-bold px-2.5 py-1 rounded-full">Protección + Cuidado</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: ESPECIAL AVIACIÓN Y TRIPULANTES DE CABINA (TCP) -->
+    <section id="aviacion-tcp" class="py-20 px-4 bg-slate-900 text-white relative overflow-hidden">
+        
+        <!-- Decorative Glow Background -->
+        <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <!-- Fondo azul pastel solicitado previamente -->
+                <span class="text-xs font-bold tracking-widest text-sky-900 uppercase bg-sky-100 border border-sky-200 px-3 py-1 rounded-full">Mundo Aeronáutico</span>
+                
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mt-3 mb-4">
+                    La Inteligencia Emocional en el Trabajo de un TCP
+                </h2>
+                
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    El trabajo de un Tripulante de Cabina de Pasajeros exige un equilibrio mental extraordinario. No solo son la imagen de la aerolínea, son **líderes de seguridad emocional en situaciones críticas**.
+                </p>
+            </div>
+
+            <!-- Tabbed Explorer for Aviation Skills -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                
+                <!-- Card 1: Gestión de Crisis -->
+                <div class="glass-card-dark p-6 rounded-3xl border border-slate-800 hover:border-sky-500/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">1. Manejo de Turbulencias y Emergencias</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                       
+                    </p>
+                </div>
+
+                <!-- Card 2: Empatía con el Pasajero -->
+                <div class="glass-card-dark p-6 rounded-3xl border border-slate-800 hover:border-purple-500/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">2. Desescalada de Conflictos</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                        
+                    </p>
+                </div>
+
+                <!-- Card 3: Autocuidado en Rutas Largas -->
+                <div class="glass-card-dark p-6 rounded-3xl border border-slate-800 hover:border-rose-500/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-bed"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">3. Prevención del Burnout y Jetlag</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                        
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Detailed Aviation Matrix Widget -->
+            <div class="glass-card-dark rounded-3xl p-6 sm:p-8 border border-slate-800">
+                <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-800 pb-6 mb-6 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Matriz de Cabina Emocional</span>
+                        <h3 class="text-xl font-bold text-white mt-1">¿Por qué es indispensable este trío a bordo?</h3>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs text-slate-400">
+                        <i class="fa-solid fa-plane-lock text-sky-400"></i>
+                        <span>Estándar de Excelencia TCP</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-sky-300 text-sm flex items-center">
+                            <i class="fa-solid fa-brain mr-2"></i> Inteligencia Emocional
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Es la <strong>habilidad técnica del alma</strong>. Permite controlar la mente bajo presión, comunicarse con el capitán en situaciones límite y proyectar serenidad absoluta.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-purple-300 text-sm flex items-center">
+                            <i class="fa-solid fa-compass mr-2"></i> Ikigai TCP
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Es el <strong>motor diario</strong>. Evita que el trabajo se vuelva monótono. Al unir el gusto por volar con la profesión, cada despegue se llena de entusiasmo renovado.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-rose-300 text-sm flex items-center">
+                            <i class="fa-solid fa-flag mr-2"></i> Shimei de Servicio
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Es el <strong>compromiso ético y humano</strong>. Ver la seguridad de 200 pasajeros no como una obligación, sino como una misión de honor y entrega sincera.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: QUIZ / TEST INTERACTIVO "CHEQUEO PRE-VUELO EMOCIONAL" -->
+    <section id="test-emocional" class="py-20 px-4 max-w-5xl mx-auto relative z-10">
+        <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl border border-white relative overflow-hidden">
+            
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3 py-1 rounded-full">Simulador Interactivo</span>
+                <h2 class="text-3xl font-serif font-bold text-slate-800 mt-2">Chequeo Pre-Vuelo Emocional</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2">
+                    Responde brevemente a estas 3 preguntas de autoevaluación para verificar tu altitud de vuelo emocional actual.
+                </p>
+            </div>
+
+            <form id="quizForm" onsubmit="event.preventDefault(); calculateQuizScore();" class="space-y-8">
+                
+                <!-- Question 1 -->
+                <div class="bg-white/70 p-5 rounded-2xl border border-slate-100 space-y-3">
+                    <label class="block text-sm font-bold text-slate-800">
+                        1. Frente a una situación de estrés o impaciencia de un pasajero/persona, ¿cómo reaccionas?
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-sky-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q1" value="3" class="mt-0.5" required>
+                            <span>Mantengo la calma, escucho con empatía y busco resolver serenamente.</span>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-sky-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q1" value="2" class="mt-0.5">
+                            <span>Me tensiono un poco, pero logro disimularlo profesionalmente.</span>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-sky-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q1" value="1" class="mt-0.5">
+                            <span>Reacciono a la defensiva o siento frustración inmediata.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="bg-white/70 p-5 rounded-2xl border border-slate-100 space-y-3">
+                    <label class="block text-sm font-bold text-slate-800">
+                        2. ¿Sientes que tus actividades diarias (trabajo/estudio) están alineadas con lo que amas y tus habilidades (Ikigai)?
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-purple-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q2" value="3" class="mt-0.5" required>
+                            <span>Totalmente, disfruto lo que hago y siento que aprovecho mi potencial.</span>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-purple-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q2" value="2" class="mt-0.5">
+                            <span>En parte, estoy en búsqueda de encontrar mi equilibrio perfecto.</span>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-purple-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q2" value="1" class="mt-0.5">
+                            <span>Siento que hago las cosas por obligación sin pasión.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="bg-white/70 p-5 rounded-2xl border border-slate-100 space-y-3">
+                    <label class="block text-sm font-bold text-slate-800">
+                        3. ¿Cómo concibes la idea de servir y cuidar a otros (Shimei)?
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-rose-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q3" value="3" class="mt-0.5" required>
+                            <span>Como un privilegio y una misión de vida trascendente.</span>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-rose-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q3" value="2" class="mt-0.5">
+                            <span>Es importante, aunque me cuesta cuando estoy fatigado/a.</span>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:bg-rose-50 cursor-pointer flex items-start space-x-2">
+                            <input type="radio" name="q3" value="1" class="mt-0.5">
+                            <span>Lo veo simplemente como una tarea secundaria o requerida.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="text-center pt-2">
+                    <button type="submit" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-sky-500 via-purple-500 to-rose-400 text-white font-bold text-sm shadow-lg hover:opacity-95 transition transform hover:scale-105">
+                        <i class="fa-solid fa-plane-departure mr-2"></i> Obtener mi Reporte de Vuelo
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Quiz Results Modal / Result Box -->
+            <div id="quizResult" class="hidden mt-8 p-6 rounded-2xl bg-slate-900 text-white text-center space-y-3 animate-fade-in">
+                <div class="inline-flex p-3 rounded-full bg-emerald-500/20 text-emerald-400 text-2xl mb-1">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h3 id="resultTitle" class="text-xl font-bold font-serif text-white"></h3>
+                <p id="resultDesc" class="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed"></p>
+                <button onclick="document.getElementById('quizResult').classList.add('hidden')" class="text-xs text-sky-400 underline font-semibold mt-2 hover:text-sky-300">
+                    Realizar chequeo nuevamente
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800 text-xs text-center relative z-10">
+        <div class="max-w-7xl mx-auto space-y-4">
+            <div class="flex items-center justify-center space-x-2 text-white font-serif font-bold text-base">
+                <i class="fa-solid fa-plane-up text-sky-400"></i>
+                <span>Inteligencia Emocional, Ikigai y Shimei en Aviación</span>
+            </div>
+            <p class="max-w-md mx-auto text-slate-500">
+                El objetivo es enriquecer el aprendizaje sobre autorregulación emocional, propósito de vida y servicio de excelencia en Tripulantes de Cabina de Pasajeros.
+            </p>
+            <div class="pt-4 border-t border-slate-800 text-slate-600">
+            
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Interactive Mood Selector in Hero
+        function setFlightMood(mood, description, color) {
+            const output = document.getElementById('moodOutput');
+            let colorClasses = {
+                sky: 'text-sky-700 bg-sky-50 border-sky-200',
+                purple: 'text-purple-700 bg-purple-50 border-purple-200',
+                rose: 'text-rose-700 bg-rose-50 border-rose-200',
+                amber: 'text-amber-700 bg-amber-50 border-amber-200'
+            };
+
+            output.className = `mt-4 p-3 rounded-xl border text-xs sm:text-sm flex items-center justify-between transition-all ${colorClasses[color]}`;
+            output.innerHTML = `
+                <span class="flex items-center font-medium">
+                    <i class="fa-solid fa-plane-flight mr-2"></i> 
+                    <strong>Modo ${mood}:</strong> &nbsp;${description}
+                </span>
+                <span class="font-mono text-xs font-bold uppercase">ALTITUD OPTIMA</span>
+            `;
+        }
+
+        // Interactive Ikigai Details Switcher
+        const ikigaiDetails = {
+            amas: {
+                title: "1. Lo que amas (La Pasión Volando)",
+                text: "Es tu amor auténtico por viajar, conectar con personas de diferentes culturas, explorar el cielo y brindar atención cálida. Cuando amas estar a bordo, el uniforme de TCP se lleva con orgullo y alegría natural."
+            },
+            bueno: {
+                title: "2. En lo que eres bueno (Tus Talentos TCP)",
+                text: "Tus competencias emocionales y técnicas: capacidad de mantener la serenidad bajo presión, excelente comunicación asertiva, empatía con pasajeros ansiosos y destreza en primeros auxilios y evacuaciones."
+            },
+            mundo: {
+                title: "3. Lo que el mundo necesita (Tu Valor Social)",
+                text: "El mundo requiere viajes seguros, tranquilos y humanos. En un entorno de alto estrés como los aeropuertos, un TCP con empatía proporciona contención emocional, calma y seguridad que los viajeros necesitan profundamente."
+            },
+            pagan: {
+                title: "4. Por lo que te pueden pagar (Tu Profesión)",
+                text: "Tu trabajo formal como Tripulante de Cabina de Pasajeros remunerado por las líneas aéreas. Incluye tus horas de vuelo, cumplimiento de normativas de aviación y responsabilidades contractuales."
+            },
+            ikigai: {
+                title: "¡TU IKIGAI TCP! (El Centro del Propósito)",
+                text: "¡Felicidades! Has alcanzado el punto de convergencia donde tu pasión por volar, tus fortalezas en gestión humana, el servicio al mundo y tu trabajo profesional se fusionan. Volar deja de ser un empleo y se convierte en tu estilo de vida pleno."
+            }
+        };
+
+        function showIkigaiDetail(key) {
+            const detail = ikigaiDetails[key];
+            if (detail) {
+                document.getElementById('ikigaiTitle').innerText = detail.title;
+                document.getElementById('ikigaiText').innerText = detail.text;
+                
+                // Add highlight animation
+                const box = document.getElementById('ikigaiDetailBox');
+                box.classList.add('ring-2', 'ring-purple-300');
+                setTimeout(() => box.classList.remove('ring-2', 'ring-purple-300'), 500);
+            }
+        }
+
+        // Quiz Score Calculation
+        function calculateQuizScore() {
+            const q1 = parseInt(document.querySelector('input[name="q1"]:checked')?.value || 0);
+            const q2 = parseInt(document.querySelector('input[name="q2"]:checked')?.value || 0);
+            const q3 = parseInt(document.querySelector('input[name="q3"]:checked')?.value || 0);
+
+            const total = q1 + q2 + q3;
+            const resultBox = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDesc = document.getElementById('resultDesc');
+
+            resultBox.classList.remove('hidden');
+
+            if (total >= 8) {
+                resultTitle.innerText = "¡Altitud Máxima: Capitán Emocional!";
+                resultDesc.innerText = "Tienes una Inteligencia Emocional excepcional y un Ikigai muy claro. Reflejas la esencia del Shimei: tu vocación de servicio brinda una experiencia segura, empática y memorable a cada pasajero.";
+            } else if (total >= 5) {
+                resultTitle.innerText = "Nivel de vuelo: En Ruta de Crecimiento";
+                resultDesc.innerText = "Tienes sólidas bases emocionales y empatía. Practicar un mayor autocuidado y profundizar en tu Shimei te ayudará a sobrellevar mejor los momentos de alta turbulencia o fatiga.";
+            } else {
+                resultTitle.innerText = "Chequeo Requerido: Turbulencias en Cabina";
+                resultDesc.innerText = "Es un excelente momento para hacer una pausa en tu plan de vuelo. Trabajar en tu autorregulación y descubrir tu Ikigai te dará herramientas invaluables para disfrutar del viaje con mayor paz.";
+            }
+
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
